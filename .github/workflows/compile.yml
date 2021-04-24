@@ -5,7 +5,7 @@ on:
       - main
       - master
 env:
-  LATEX_ROOT: abcd-venue-20XX-talk
+  LATEX_ROOT: SCO-EXTRAAMAS-2021-talk
 jobs:
   compile:
     runs-on: ubuntu-latest
