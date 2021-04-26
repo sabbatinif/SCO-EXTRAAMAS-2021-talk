@@ -8,48 +8,42 @@
 \usepackage[utf8]{inputenc}
 %
 \usepackage{SCO-EXTRAAMAS-2021-talk}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[Short Title]{
+\title[\gridex]{
     % same title of the presented paper
-    Long title line 2
-    \\
-    Line 2
+	\gridex: An Algorithm for
+	\\
+	Knowledge Extraction from Black-Box Regressors
 }
 %
 % \subtitle{Extended Abstract}
 %
 % same authors order of the presented paper
-\author[Alice et al.]{
-	\emph{Alice}$^{*}$ % empth the presenting author
+\author[F. Sabbatini et al.]{
+	\emph{Federico Sabbatini} % empth the presenting author
 	\and 
-	Bob$^{\dagger}$
+	Giovanni Ciatto
 	\\
-	Carl$^{\dagger}$
-	\and
-	Dan$^{*}$
+	Andrea Omicini
 }
 %
-\institute[UniBo, Uni*]{
-    $^{*}$Dipartimento di Informatica -- Scienza e Ingegneria (DISI)
+\institute[UniBo]{
+    Dipartimento di Informatica -- Scienza e Ingegneria (DISI)
     \\
     \textsc{Alma Mater Studiorum} -- Università di Bologna
     \\
     \texttt{
-        \{\emph{alice}, bob\}@unibo.it % emph the presenting author's email
+        \{\emph{f.sabbatini}, giovanni.ciatto, andrea.omicini\}@unibo.it % emph the presenting author's email
     }
-    \vspace{.3cm}
-    \\
-    $^{\dagger}$University of Whatever
-    \\
-    \texttt{\{carl, dan\}@whatever.org}
 }
 %
-\date[ACRONYM, YEAR]{
-	International Conference/Workshop on
+\date[EXTRAAMAS, 2021]{
+	3\textsuperscript{rd} International Workshop on EXplainable and
 	\\
-	Interesting things and their applications (ACRONYM)
+	TRAnsparent AI and Multi-Agent Systems (EXTRAAMAS)
 	\\
-	Presentation day, YEAR, LOCATION
+	May 3, 2021, London, UK (online)
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \AtBeginSection[]
@@ -81,42 +75,41 @@
 %\\\\\\\\\\\\\\\\\\\\\
 
 %===============================================================================
-\section{Motivation \& Context}
+\section{Motivation \& Context} % non il contrario?
 %===============================================================================
 
 %\\\\\\\\\\\\\\\\\\\\\
 \begin{frame}[c]{Context}
     
-    Provide some context (max 4-5 items):
     %
     \vfill
     %
     \begin{itemize}
-        \item fact 1
+        \item ML-based predictors are more and more used in a wide range of fields to perform different tasks
         %
         \begin{itemize}
-            \item note
+            \item[e.g.] pattern detection, image and speech recognition, clustering, classification and regression
         \end{itemize}
         
         \vfill
         
-        \item[$\Rightarrow$] fact 2 implied by fact 1
+        \item predictors hiding their internal logic are named \emph{black boxes}
         %
         \begin{itemize}
-            \item[!] important \alert{notice}
+            \item[!] black-box predictors cannot give to the user intelligible outputs or \alert{explanations about their outcomes}
         \end{itemize}
         
         \vfill
         
-        \item fact 3
+        \item there are critical applications where the output interpretability is not an option
         %
         \begin{itemize}
-            \item note
+        	\item for instance healthcare, finance, etc.
         \end{itemize}
+    
+    	\vfill
         
-        \vfill
-        
-        \item fact 4
+        \item[$\Rightarrow$] knowledge extraction mechanisms are required to use black-box models in these critical areas 
         
     \end{itemize}
 \end{frame}
@@ -124,52 +117,54 @@
 
 %\\\\\\\\\\\\\\\\\\\\\
 \begin{frame}[c]{Motivation}
-    Enumerate motivations for this work:
+	Several methods were developed to extract knowledge from black-box predictors, however:
     %
     \vfill
     %
     \begin{itemize}
-        \item motivation 1
+        \item most of the algorithms existing in the literature focus exclusively on classification tasks, neglecting regression
         %
         \begin{itemize}
-            \item[e.g.] example
+            \item[e.g.] \textsc{Trepan}\ccite{Craven1996}, Rule-extraction-as-learning\ccite{craven1994using}, etc.
         \end{itemize}
         
         \vfill
         
-        \item motivation 2
+        \item most of the knowledge extraction methods applicable to regression black boxes are strongly constrained
         %
         \begin{itemize}
-            \item note
+            \item[e.g.] \textsc{RefAnn}\ccite{setiono2002extraction}, only applicable to ANNs with a single hidden layer
         \end{itemize}
         
         \vfill
         
-        \item motivation 3 with citations \ccite{crawford2016artificial,RibeiroSG16,wexler2017computer}
-        
-        \vfill
-        
-        \item etc
+        \item other procedures may suffer of degrading performance when applied to complex problems
+        %
+        \begin{itemize}
+			\item[e.g.] 
+			\iter\ccite{huysmans2006iter} as the number of input features grows
+		\end{itemize}
         
     \end{itemize}
 \end{frame}
 %\\\\\\\\\\\\\\\\\\\\\
 
 %\\\\\\\\\\\\\\\\\\\\\
-\begin{frame}{Some state of the art (optional)}
-
-    Provide relevant information about the state of the art / related works here, possibly with references
-
-\end{frame}
+%\begin{frame}{Some state of the art (optional)}
+%
+%    Provide relevant information about the state of the art / related works here, possibly with references
+%
+%\end{frame}
 %\\\\\\\\\\\\\\\\\\\\\
 
 %\\\\\\\\\\\\\\\\\\\\\
 \begin{frame}{Contribution of the paper}
 
-\begin{block}{Explicitly state the contributions of the paper}
+\begin{block}{The new \gridex algorithm extends \iter}
     \begin{itemize}
-        \item contribution 1
-        \item contribution 2
+    	\item overcoming its major drawbacks
+        \item producing shorter rule lists
+        \item retaining higher fidelity w.r.t. the underlying black box
     \end{itemize}
 \end{block}
 
@@ -204,28 +199,31 @@
 
 %\\\\\\\\\\\\\\\\\\\\\
 \begin{frame}%[allowframebreaks]
-\frametitle{Conclusions \& future works}
+\frametitle{Conclusions}
 
 \begin{block}{Summing up}
-    Summarise the most relevant contributions of this study:
+	The new \gridex algorithms is able to:
     %
     \begin{itemize}
-        \item conclusion 1
-        \item conclusion 2
-        \item conclusion 3
+        \item overcome the \iter non-exhaustivity
+        \item focus only on the interesting regions of the input space
+        \item produce shorter rule lists and attain better predictive performances then \iter
     \end{itemize}
 \end{block}
 
+\end{frame}
+
+\begin{frame}
+	\frametitle{Future works}
+
 \begin{exampleblock}{Future works}
-    Sketch some future research directions
+	Our next research efforts will address the remaining limitations of \iter and other algorithms, for instance:
     %
     \begin{itemize}
-        \item future work 1
-        \item future work 2
+        \item the inability to handle categorical features
+        \item the constant output value of the produced decision rules 
     \end{itemize}
 \end{exampleblock}
-
-(may be split into 2 slides)
 
 \end{frame}
 %\\\\\\\\\\\\\\\\\\\\\
