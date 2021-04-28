@@ -85,7 +85,7 @@
     \vfill
     %
     \begin{itemize}
-        \item ML-based predictors are more and more used in a wide range of fields to perform different tasks
+        \item Focus on ML-based predictors:  many tasks, in different fields
         %
         \begin{itemize}
             \item[e.g.] pattern detection, image and speech recognition, clustering, classification and regression
@@ -93,23 +93,23 @@
         
         \vfill
         
-        \item predictors hiding their internal logic are named \emph{black boxes}
+        \item Predictors are \emph{black boxes}: they hide their internal logic 
         %
         \begin{itemize}
-            \item[!] black-box predictors cannot give to the user intelligible outputs or \alert{explanations about their outcomes}
+            \item[!] only predictions are output to users: no \alert{explanation} provided
         \end{itemize}
         
         \vfill
         
-        \item there are critical applications where the output interpretability is not an option
+        \item Lack of interpretability is not an option in critical applications
         %
         \begin{itemize}
-        	\item for instance healthcare, finance, etc.
+        	\item[eg] healthcare, finance, etc.
         \end{itemize}
     
     	\vfill
         
-        \item[$\Rightarrow$] knowledge extraction mechanisms are required to use black-box models in these critical areas 
+        \item[$\rightarrow$] knowledge extraction mechanisms mitigate this issue
         
     \end{itemize}
 \end{frame}
@@ -117,32 +117,31 @@
 
 %\\\\\\\\\\\\\\\\\\\\\
 \begin{frame}[c]{Motivation}
-	Several methods were developed to extract knowledge from black-box predictors, however:
+	Several methods for knowledge extraction, however:
     %
     \vfill
     %
     \begin{itemize}
-        \item most of the algorithms existing in the literature focus exclusively on classification tasks, neglecting regression
+        \item most algorithms focus on classification tasks, neglecting regression
         %
         \begin{itemize}
-            \item[e.g.] \textsc{Trepan}\ccite{Craven1996}, Rule-extraction-as-learning\ccite{craven1994using}, etc.
+            \item[eg] \textsc{Trepan}~\ccite{Craven1996}, Rule-extraction-as-learning~\ccite{craven1994using}, etc.
         \end{itemize}
         
         \vfill
         
-        \item most of the knowledge extraction methods applicable to regression black boxes are strongly constrained
+        \item most methods supporting regression are over-constrained
         %
         \begin{itemize}
-            \item[e.g.] \textsc{RefAnn}\ccite{setiono2002extraction}, only applicable to ANNs with a single hidden layer
+            \item[eg] \textsc{RefAnn}~\ccite{setiono2002extraction}, only applicable to ANNs with a single hidden layer
         \end{itemize}
         
         \vfill
         
-        \item other procedures may suffer of degrading performance when applied to complex problems
+        \item other methods' performance degrades as complexity grows
         %
         \begin{itemize}
-			\item[e.g.] 
-			\iter\ccite{huysmans2006iter} as the number of input features grows
+			\item[eg] \iter~\ccite{huysmans2006iter} with high-dimension datasets
 		\end{itemize}
         
     \end{itemize}
@@ -150,38 +149,68 @@
 %\\\\\\\\\\\\\\\\\\\\\
 
 %\\\\\\\\\\\\\\\\\\\\\
-\begin{frame}{Some state of the art}
+\begin{frame}[allowframebreaks]{Some state of the art}
 	
     \begin{itemize}
-    	\item ML-based predictors detect patterns and relationships in the data
+    	\item ML-based predictors detect patterns and relationships buried in data
     	\begin{itemize}
-    		\item their acquired knowledge can be reused in similar applications
+    		\item the acquire knowledge is reused in similar applications
     	\end{itemize}
     
-    	\vfill
+    	\bigskip
     
     	\item However, their knowledge is not explicitly represented
+    	%
     	\begin{itemize}
-    		\item[$\Rightarrow$] lack of interpretability, models described as black boxes\ccite{Lipton2016}
-    		\item[$\Rightarrow$] need of more interpretable predictors\ccite{Rudin2019}, inspection techniques\ccite{Guidotti2018}    		
-    	\end{itemize}
-    
-    	\vfill
-    	
-    	\item[!] \alert{A system is defined \emph{interpretable} if its operations and outcomes can be easily understood by a human being}\ccite{agentbasedxai-extraamas2020}
-    	
-    	\vfill
-    	
-    	\item \iter\ccite{huysmans2006iter} is a knowledge-extraction algorithm for black-box regressors
-    	\begin{itemize}
-    		\item[!] pedagogical method: no constraints on the model nature and structure
-    		\item it extracts lists of if-then-else rules by analysing the input feature space 
-    		\item global approximation of the underlying black-box regressor 	
-    		\item[!] it may be unable to cover the whole input space with its rules   
-    		\item[!] prediction discretisation: \iter assigns a constant value to each rule
-    		\item inability to handle categorical features, only real-valued ones
+    		\item[$\rightarrow$] lack of interpretability, models described as black boxes~\ccite{Lipton2016}
+    		\item[$\rightarrow$] need of more interpretable predictors~\ccite{Rudin2019}, inspection techniques~\ccite{Guidotti2018}    		
     	\end{itemize}
     \end{itemize}
+
+	\framebreak % se vuoi commenta fino a qui
+
+	\begin{block}{Some definitions~\ccite{agentbasedxai-extraamas2020}}
+		\begin{description}\small
+			\item[interpretability] property of a system which is easily contemplable for humans  
+			\item[explanation] a more interpretable model of a poorly-interpretable object
+		\end{description}
+	\end{block}
+	% se vuoi aggiungi un'immagine
+
+	\framebreak
+
+	\begin{block}{\iter~\ccite{huysmans2006iter} explains \textbf{regressors} via \texttt{if-then-else} rules}
+		Pros:
+		\begin{itemize}
+			\item pedagogical method: no constraints on how regression works
+			\item global approximation of the underlying black-box 
+		\end{itemize}
+
+		Cons:
+		\begin{itemize}
+			\item possibly unable to cover the whole input space
+			\item prediction discretisation: each rule predicts a constant
+			\item inability to handle categorical data, only real vectors
+		\end{itemize}
+	\end{block}
+
+	\framebreak
+
+	\begin{exampleblock}{Example: rule extraction from NN via \iter}
+		mostra stilizzazione di NN
+
+		mostra regole estratte LEGGIBILI
+	\end{exampleblock}
+
+	\begin{alertblock}{Issues of \iter}
+		se vuoi sposta qui i cons di cui sopra
+	\end{alertblock}
+
+	\framebreak
+
+	\begin{block}{Why rules}
+		potresti spendere due parole sul perchè è interessante avere regole, in prospettiva
+	\end{block}
 
 \end{frame}
 %\\\\\\\\\\\\\\\\\\\\\
@@ -250,22 +279,19 @@
 
 \begin{frame}
 \frametitle{Differences between \iter and \gridex}
-	\begin{block}{
-		\begin{tabular}{p{0.45\textwidth}p{0.25\textwidth}p{0.25\textwidth}}
-			& \iter & \gridex
-		\end{tabular}
-	}
-		\begin{tabular}{p{0.45\textwidth}p{0.25\textwidth}p{0.25\textwidth}}
-			Approach & bottom-up & top-down \\
-			Extracted rules & if-then-else & if-then-else \\
-			Input region importance & no & yes \\
-			Input feature importance & no & yes \\
-			Input space coverage & non-exhaustive & exhaustive \\
-			Suitable with few input features & yes & yes \\
-			Suitable with many input features & no & yes \\
-			Output value & constant & constant 
-		\end{tabular}
-	\end{block}
+	\centering
+	\begin{tabular}{l|l|l}
+		& \iter & \gridex \\
+		\hline\hline
+		Approach & bottom-up & top-down \\
+		Extracted rules & if-then-else & if-then-else \\
+		Input region importance & no & yes \\
+		Input feature importance & no & yes \\
+		Input space coverage & non-exhaustive & exhaustive \\
+		Suitable with few input features & yes & yes \\
+		Suitable with many input features & no & yes \\
+		Output value & constant & constant 
+	\end{tabular}
 \end{frame}
 
 \section{Experiments \& Results}
