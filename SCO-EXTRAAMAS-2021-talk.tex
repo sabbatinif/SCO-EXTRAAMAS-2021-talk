@@ -75,7 +75,7 @@
 %\\\\\\\\\\\\\\\\\\\\\
 
 %===============================================================================
-\section{Motivation \& Context} % non il contrario?
+\section{Context \& Motivation} 
 %===============================================================================
 
 %\\\\\\\\\\\\\\\\\\\\\
@@ -104,7 +104,7 @@
         \item Lack of interpretability is not an option in critical applications
         %
         \begin{itemize}
-        	\item[eg] healthcare, finance, etc.
+        	\item[e.g.] healthcare, finance, etc.
         \end{itemize}
     
     	\vfill
@@ -125,7 +125,7 @@
         \item most algorithms focus on classification tasks, neglecting regression
         %
         \begin{itemize}
-            \item[eg] \textsc{Trepan}~\ccite{Craven1996}, Rule-extraction-as-learning~\ccite{craven1994using}, etc.
+            \item[e.g.] \textsc{Trepan}~\ccite{Craven1996}, Rule-extraction-as-learning~\ccite{craven1994using}, etc.
         \end{itemize}
         
         \vfill
@@ -133,15 +133,15 @@
         \item most methods supporting regression are over-constrained
         %
         \begin{itemize}
-            \item[eg] \textsc{RefAnn}~\ccite{setiono2002extraction}, only applicable to ANNs with a single hidden layer
+            \item[e.g.] \textsc{RefAnn}~\ccite{setiono2002extraction}, only applicable to ANNs with a single hidden layer
         \end{itemize}
         
         \vfill
         
-        \item other methods' performance degrades as complexity grows
+        \item other methods performance degrades as complexity grows
         %
         \begin{itemize}
-			\item[eg] \iter~\ccite{huysmans2006iter} with high-dimension datasets
+			\item[e.g.] \iter~\ccite{huysmans2006iter} with high-dimension data sets
 		\end{itemize}
         
     \end{itemize}
@@ -154,7 +154,7 @@
     \begin{itemize}
     	\item ML-based predictors detect patterns and relationships buried in data
     	\begin{itemize}
-    		\item the acquire knowledge is reused in similar applications
+    		\item the acquired knowledge is reused in similar applications
     	\end{itemize}
     
     	\bigskip
@@ -175,7 +175,10 @@
 			\item[explanation] a more interpretable model of a poorly-interpretable object
 		\end{description}
 	\end{block}
-	% se vuoi aggiungi un'immagine
+
+	\vspace{25px}
+	\centering
+	\includegraphics[width=.9\linewidth]{img/wb.png}	
 
 	\framebreak
 
@@ -183,7 +186,7 @@
 		Pros:
 		\begin{itemize}
 			\item pedagogical method: no constraints on how regression works
-			\item global approximation of the underlying black-box 
+			\item global approximation of the underlying black box 
 		\end{itemize}
 
 		Cons:
@@ -194,23 +197,15 @@
 		\end{itemize}
 	\end{block}
 
-	\framebreak
+%	\begin{alertblock}{Issues of \iter}
+%		se vuoi sposta qui i cons di cui sopra
+%	\end{alertblock}
 
-	\begin{exampleblock}{Example: rule extraction from NN via \iter}
-		mostra stilizzazione di NN
-
-		mostra regole estratte LEGGIBILI
-	\end{exampleblock}
-
-	\begin{alertblock}{Issues of \iter}
-		se vuoi sposta qui i cons di cui sopra
-	\end{alertblock}
-
-	\framebreak
-
-	\begin{block}{Why rules}
-		potresti spendere due parole sul perchè è interessante avere regole, in prospettiva
-	\end{block}
+%	\framebreak
+%
+%	\begin{block}{Why rules}
+%		potresti spendere due parole sul perchè è interessante avere regole, in prospettiva
+%	\end{block}
 
 \end{frame}
 %\\\\\\\\\\\\\\\\\\\\\
@@ -242,7 +237,7 @@
 %===============================================================================
 
 %\\\\\\\\\\\\\\\\\\\\\
-\begin{frame}%[allowframebreaks]
+\begin{frame}[allowframebreaks]
 \frametitle{\iter basic idea}
 	\begin{columns}[t]
 		\column{0.51\linewidth}
@@ -254,6 +249,17 @@
 	\end{columns}
 	\centering
 	Hyper-cubes creation and expansion in the \iter algorithm, images from \ccite{huysmans2006iter}
+	
+
+	\framebreak
+	
+	\centering
+	\includegraphics[width=.75\linewidth]{img/mlp.png}
+	
+	\begin{exampleblock}{Example: rule extraction from ANN via \iter}
+		$ \text{if} ~ (v_1 \in [a_1, b_1], v_2 \in [a_2, b_2], v_3 \in [a_3, b_3], v_4 \in [a_4, b_4]) ~ \text{then} $ \\
+		$ ~~~~~~~\text{output} = O $
+	\end{exampleblock}	
 \end{frame}
 %\\\\\\\\\\\\\\\\\\\\\
 
@@ -336,7 +342,7 @@
 
 \end{frame}
 
-\begin{frame}%[allowframebreaks]
+\begin{frame}[allowframebreaks]
 	\frametitle{Results}
 	
 	\begin{columns}
@@ -361,9 +367,9 @@
 			\scriptsize Number of extracted rules
 		\end{column}		
 	\end{columns}	
-\end{frame}
 
-\begin{frame}%[allowframebreaks]
+	\framebreak
+
 	\frametitle{Results}
 	\scriptsize
 	\begin{columns}[t]
@@ -403,7 +409,7 @@
         \item focus only on the interesting regions of the input space
         \item assign different weights to the input features
         \item produce shorter rule lists than \iter
-        \item attain better predictive performances then \iter
+        \item attain better predictive performances than \iter
         \item simplify the parameter tuning phase
     \end{itemize}
 \end{block}
@@ -423,7 +429,7 @@
 		\end{itemize}	
 		\item the enhancement of \gridex
 	    \begin{itemize}
-			\item[e.g.] automatise the adaptive split thresholds of \gridex
+			\item[e.g.] automatise the adaptive split threshold selection of \gridex
 		\end{itemize}		
 	\end{itemize}
 \end{exampleblock}
